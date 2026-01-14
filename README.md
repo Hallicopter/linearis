@@ -197,7 +197,7 @@ This is a fork of [czottmann/linearis](https://github.com/czottmann/linearis) th
 
 ```bash
 # Clone and build
-git clone --branch add-due-date https://github.com/Hallicopter/linearis.git
+git clone https://github.com/Hallicopter/linearis.git
 cd linearis
 npm install
 npm run build
