@@ -38,6 +38,7 @@ export interface LinearIssue {
   };
   priority: number;
   estimate?: number;
+  dueDate?: string;
   labels: Array<{
     id: string;
     name: string;

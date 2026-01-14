@@ -18,6 +18,7 @@ export const ISSUE_CORE_FIELDS = `
   branchName
   priority
   estimate
+  dueDate
   createdAt
   updatedAt
 `;

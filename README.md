@@ -183,9 +183,28 @@ linearis usage
 linearis issues list -l 5 | jq '.[] | .identifier + ": " + .title'
 ```
 
+## About This Fork
+
+This is a fork of [czottmann/linearis](https://github.com/czottmann/linearis) that adds **due date support** to issue responses. The original linearis CLI does not include the `dueDate` field when fetching issues, which is essential for tracking deadlines.
+
+### Changes in this fork:
+- Added `dueDate` field to all issue queries and responses
+- Issues with due dates now include a `dueDate` field (ISO 8601 date format, e.g., "2026-01-18")
+
 ## Installation
 
-### npm (recommended)
+### From this fork (recommended)
+
+```bash
+# Clone and build
+git clone --branch add-due-date https://github.com/Hallicopter/linearis.git
+cd linearis
+npm install
+npm run build
+sudo npm link
+```
+
+### From original npm package (without dueDate support)
 
 ```bash
 npm install -g linearis
