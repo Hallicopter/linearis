@@ -861,6 +861,7 @@ export class GraphQLIssuesService {
         : undefined,
       priority: issue.priority,
       estimate: issue.estimate || undefined,
+      dueDate: issue.dueDate || undefined,
       labels: issue.labels.nodes.map((label: any) => ({
         id: label.id,
         name: label.name,
