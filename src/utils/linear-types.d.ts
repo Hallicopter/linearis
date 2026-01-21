@@ -102,6 +102,7 @@ export interface CreateIssueArgs {
   statusId?: string;
   labelIds?: string[];
   estimate?: number;
+  dueDate?: string;
   parentId?: string;
   milestoneId?: string;
   cycleId?: string;
@@ -117,6 +118,7 @@ export interface UpdateIssueArgs {
   projectId?: string;
   labelIds?: string[];
   estimate?: number;
+  dueDate?: string | null;
   parentId?: string;
   milestoneId?: string | null;
   cycleId?: string | null;

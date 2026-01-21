@@ -115,6 +115,7 @@ export function setupIssuesCommands(program: Command): void {
     .option("-d, --description <desc>", "issue description")
     .option("-a, --assignee <assigneeId>", "assign to user ID")
     .option("-p, --priority <priority>", "priority level (1-4)")
+    .option("--due-date <date>", "due date (ISO 8601 format, e.g., 2025-01-15)")
     .option("--project <project>", "add to project (name or ID)")
     .option(
       "--team <team>",
@@ -155,6 +156,7 @@ export function setupIssuesCommands(program: Command): void {
             description: options.description,
             assigneeId: options.assignee,
             priority: options.priority ? parseInt(options.priority) : undefined,
+            dueDate: options.dueDate,
             projectId: options.project, // GraphQL service handles project resolution
             statusId: options.status,
             labelIds, // GraphQL service handles label resolution
@@ -222,6 +224,8 @@ export function setupIssuesCommands(program: Command): void {
     .option("-d, --description <desc>", "new description")
     .option("-s, --status <status>", "new status name or ID")
     .option("-p, --priority <priority>", "new priority (1-4)")
+    .option("--due-date <date>", "due date (ISO 8601 format, e.g., 2025-01-15)")
+    .option("--clear-due-date", "remove due date from issue")
     .option("--assignee <assigneeId>", "new assignee ID")
     .option("--project <project>", "new project (name or ID)")
     .optionsGroup("Labels-related options:")
@@ -273,6 +277,13 @@ export function setupIssuesCommands(program: Command): void {
           if (options.cycle && options.clearCycle) {
             throw new Error(
               "Cannot use --cycle and --clear-cycle together",
+            );
+          }
+
+          // Check for mutually exclusive due date flags
+          if (options.dueDate && options.clearDueDate) {
+            throw new Error(
+              "Cannot use --due-date and --clear-due-date together",
             );
           }
 
@@ -331,6 +342,7 @@ export function setupIssuesCommands(program: Command): void {
             description: options.description,
             statusId: options.status,
             priority: options.priority ? parseInt(options.priority) : undefined,
+            dueDate: options.dueDate || (options.clearDueDate ? null : undefined),
             assigneeId: options.assignee,
             projectId: options.project, // GraphQL service handles project resolution
             labelIds,

@@ -372,6 +372,7 @@ export class GraphQLIssuesService {
     }
     if (resolvedStatusId !== undefined) updateInput.stateId = resolvedStatusId;
     if (args.priority !== undefined) updateInput.priority = args.priority;
+    if (args.dueDate !== undefined) updateInput.dueDate = args.dueDate;
     if (args.assigneeId !== undefined) {
       updateInput.assigneeId = args.assigneeId;
     }
@@ -611,6 +612,7 @@ export class GraphQLIssuesService {
       createInput.labelIds = finalLabelIds;
     }
     if (args.estimate !== undefined) createInput.estimate = args.estimate;
+    if (args.dueDate) createInput.dueDate = args.dueDate;
     if (finalParentId) createInput.parentId = finalParentId;
     if (finalMilestoneId) createInput.projectMilestoneId = finalMilestoneId;
     if (finalCycleId) createInput.cycleId = finalCycleId;
